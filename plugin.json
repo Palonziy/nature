@@ -1,0 +1,21 @@
+{
+  "name": "scroll-world-plugin",
+  "version": "1.0.0",
+  "description": "Gemini AI Agent skill for building scroll-scrubbed 'fly through the world' landing pages with continuous camera transitions using AI video generation (Monid / Higgsfield / Gemini Imagen 3).",
+  "author": {
+    "name": "Antigravity Agent Community",
+    "url": "https://github.com/oso95/scroll-world"
+  },
+  "license": "MIT",
+  "keywords": [
+    "scroll-world",
+    "landing-page",
+    "scroll-scrub",
+    "higgsfield",
+    "monid",
+    "seedance",
+    "imagen3",
+    "3d-diorama",
+    "gemini-skill"
+  ]
+}
