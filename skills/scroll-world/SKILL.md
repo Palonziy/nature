@@ -27,12 +27,26 @@ Do not assume a frontend framework. The scrub engine in `references/scrub-engine
 
 Use `run_command` in your terminal environment (PowerShell / Bash):
 
-1. **Monid CLI — default video-chain backend:** Check `monid --version`, `monid keys list` (active key) and `monid balance` — the chain is billed per clip in USD (Step 1.7 has the numbers; a 1080p N=6 chain ≈ $27). If missing or balance short, fall back to Higgsfield credits (Step 4).
-2. **Higgsfield CLI — stills / fallback biller:** Check `higgsfield workspace list`. If unauthenticated, ask the user to run `higgsfield auth login` in their terminal.
-3. **ffmpeg / ffprobe** on system `$PATH` (required for boundary frame extraction + video encoding).
-4. **Python 3 with PIL** (`python -c "import PIL"`) for optional background knockout.
-5. **Gemini Native Image Gen (`generate_image`) or Codex CLI:** Native Imagen 3 via Gemini tool `generate_image` is available directly for stills, or Codex CLI if `codex login status` reports a valid session.
-6. **Platform Note:** Windows environments can use `references/pipeline.ps1` (PowerShell) or `references/pipeline.md` (Bash).
+1. **Automatic FFmpeg Check & Auto-Installation:**
+   Check if `ffmpeg` and `ffprobe` are on system `$PATH` (`ffmpeg -version`).
+   If `ffmpeg` is missing, automatically install it via system package manager:
+   - **Windows:** `winget install --id Gyan.FFmpeg -e --accept-source-agreements --accept-package-agreements`
+   - **macOS:** `brew install ffmpeg`
+   - **Linux:** `sudo apt-get update && sudo apt-get install -y ffmpeg`
+
+2. **Monid CLI / Higgsfield CLI Check:**
+   - Check `monid --version` and `monid balance`.
+   - Check `higgsfield workspace list`.
+
+3. **AUTOMATIC FALLBACK — Mode B (Zero-Setup Pure Web 3D Mode):**
+   If `monid` and `higgsfield` CLIs are absent or unauthenticated (or if the user requests zero external setup / zero credit spend):
+   - Automatically fall back to **Zero-Setup Pure Web 3D Mode**.
+   - Gemini generates all scene stills natively using `generate_image` (Imagen 3).
+   - Video generation CLIs and `ffmpeg` are **NOT required** in Zero-Setup Mode!
+   - The engine uses 3D WebGL / CSS 3D Parallax Depth Zoom to dive smoothly into each scene still as the user scrolls.
+
+4. **Gemini Native Image Gen (`generate_image`):** Native Imagen 3 via Gemini tool `generate_image` is available directly for stills (or Codex CLI if `codex login status` reports a valid session).
+5. **Platform Note:** Windows environments can use `references/pipeline.ps1` (PowerShell) or `references/pipeline.md` (Bash).
 
 ---
 

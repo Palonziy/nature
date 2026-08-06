@@ -17,16 +17,25 @@ Copy the `scroll-world-gemini` folder into your Gemini configuration directory o
 cp -R scroll-world-gemini ~/.gemini/config/plugins/scroll-world-plugin
 ```
 
+## ⚡ Automatic Fallbacks & Zero-Setup Mode
+
+- **Automatic FFmpeg Auto-Installer:** If `ffmpeg` or `ffprobe` is not found on your system, Gemini will automatically offer and run system package installation (`winget install --id Gyan.FFmpeg` on Windows, `brew install ffmpeg` on macOS, `apt-get` on Linux).
+- **Zero-Setup Pure Web 3D Mode (No External Tools Required):** If Monid CLI or Higgsfield CLI are not installed, Gemini automatically switches to **Zero-Setup Pure Web 3D Mode**:
+  - Uses Gemini's native `generate_image` (Imagen 3) for all diorama scene stills.
+  - Requires **zero external software or API keys** (`monid`, `higgsfield`, and `ffmpeg` are not needed in this mode).
+  - Employs WebGL / CSS 3D Depth Parallax Zoom inside `scrub-engine.js` to create smooth 60 FPS 3D scroll fly-through transitions.
+
 ---
 
-## 📋 Requirements
+## 📋 Requirements (Video Mode vs Zero-Setup Mode)
 
-- **Gemini Agent / Antigravity SDK** with access to `run_command`, `generate_image`, `view_file`, `write_to_file`, and interactive questions (`ask_question`).
-- **Monid CLI** (optional, recommended video backend) — `seedance-2.0` pay-per-clip video generation.
-- **Higgsfield CLI** (optional) — stills generation (`gpt_image_2`), video fallback (`seedance_2_0`, `kling3_0`).
-- **Gemini Native Image Generation** (`generate_image` / Imagen 3) — available natively inside Gemini Agent.
-- **ffmpeg / ffprobe** — frame extraction and high-performance video encoding (`-g 8`, `-g 4` keyframe optimization).
-- **Python 3** with `Pillow` (optional background knockout for floating dioramas).
+- **Option A (AI Video Mode - High Fidelity):**
+  - **Monid CLI** (`seedance-2.0` pay-per-clip USD video generation) or **Higgsfield CLI**.
+  - **ffmpeg / ffprobe** (Auto-installed if missing).
+
+- **Option B (Zero-Setup Pure Web 3D Mode - Free / No Tools Required):**
+  - **Gemini Agent** native `generate_image` (Imagen 3).
+  - No CLI tools, GPU, or FFmpeg required! Runs 100% in browser WebGL.
 
 ---
 
