@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 
 const VIDEO_URL =
   'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4';
+const POSTER_FALLBACK =
+  'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1600&q=80';
 
 export const VideoBackground: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -69,6 +71,8 @@ export const VideoBackground: React.FC = () => {
       <video
         ref={videoRef}
         src={VIDEO_URL}
+        poster={POSTER_FALLBACK}
+        preload="auto"
         autoPlay
         muted
         playsInline
